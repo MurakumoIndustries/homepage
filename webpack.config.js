@@ -9,16 +9,17 @@ module.exports = env => {
   var plugins = [
     new CleanWebpackPlugin(['docs']),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: path.resolve(__dirname, './src/img/favicon.ico')
     }),
     new ExtractTextPlugin("[name].[contenthash].css"),
-  // new CopyWebpackPlugin([
-  //   { from: 'src/img/item', to: 'img/item' },
-  //   { from: 'src/img/quest', to: 'img/quest' }
-  // ]),
-  // new webpack.optimize.CommonsChunkPlugin({
-  //   name: "data",
-  // })
+    // new CopyWebpackPlugin([
+    //   { from: 'src/img/item', to: 'img/item' },
+    //   { from: 'src/img/quest', to: 'img/quest' }
+    // ]),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "data",
+    // })
   ];
   if (env.production === true) {
     console.log("!!!RELEASE!!!");
