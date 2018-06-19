@@ -7,7 +7,11 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = env => {
   console.log('Production: ', env.production) // true
   var plugins = [
-    new CleanWebpackPlugin(['murakumoindustries.github.io/*']),
+    new CleanWebpackPlugin(
+      ['murakumoindustries.github.io/'],
+      {
+        exclude: ['.git', 'img']
+      }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: path.resolve(__dirname, './src/img/favicon.ico')
