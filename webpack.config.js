@@ -7,7 +7,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = env => {
   console.log('Production: ', env.production) // true
   var plugins = [
-    new CleanWebpackPlugin(['docs']),
+    new CleanWebpackPlugin(['murakumoindustries.github.io/*']),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       favicon: path.resolve(__dirname, './src/img/favicon.ico')
@@ -36,7 +36,7 @@ module.exports = env => {
     output: {
       filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash].js',
-      path: path.resolve(__dirname, 'docs')
+      path: path.resolve(__dirname, 'murakumoindustries.github.io')
     },
     module: {
       rules: [
