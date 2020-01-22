@@ -8,10 +8,14 @@ body {
 }
 
 .logo {
-    margin: auto;
+    margin: 3rem auto;
     width: 6rem;
-    padding: 3rem 0;
+    height: 8rem;
     opacity: 0.75;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(./img/murakumo.svg);
+    background-size: contain;
 }
 
 .banner {
