@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --env.NODE_ENV=development --progress --colors --watch",
-    "build": "webpack --env.NODE_ENV=production --progress --colors --display-error-details"
+    "watch": "webpack --env NODE_ENV=development --progress --color --watch",
+    "build": "webpack --env NODE_ENV=production --progress --color"
   },
   "repository": {
     "type": "git",
@@ -20,20 +20,24 @@
   },
   "homepage": "https://github.com/MurakumoIndustries/murakumoindustries.github.io#readme",
   "devDependencies": {
+    "autoprefixer": "^10.2.4",
     "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.4.2",
-    "file-loader": "^5.0.2",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "style-loader": "^1.1.3",
-    "url-loader": "^3.0.0",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.0.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "mini-css-extract-plugin": "^1.3.8",
+    "postcss-loader": "^5.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.24.0",
+    "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.0"
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   }
 }

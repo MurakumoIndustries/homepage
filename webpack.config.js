@@ -43,18 +43,36 @@ module.exports = env => {
             chunkFilename: '[name].[chunkhash].js',
             path: path.resolve(__dirname, 'murakumoindustries.github.io')
         },
+        resolve: {
+            alias: {
+                jquery: "jquery/dist/jquery.slim.js",
+            }
+        },
         module: {
             rules: [{
-                    test: /\.css$/,
+                    test: /\.(sa|sc|c)ss$/,
                     use: [{
                             loader: MiniCssExtractPlugin.loader,
                             options: {
-                                // you can specify a publicPath here
-                                // by default it use publicPath in webpackOptions.output
-                                //publicPath: '../'
+                                //hmr: isDev,
+                            },
+                        },
+                        {
+                            loader: 'css-loader', // translates CSS into CommonJS modules
+                        },
+                        {
+                            loader: 'postcss-loader', // Run postcss actions
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        require('autoprefixer')
+                                    ]
+                                }
                             }
                         },
-                        "css-loader"
+                        {
+                            loader: 'sass-loader' // compiles Sass to CSS
+                        }
                     ]
                 },
                 {

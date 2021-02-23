@@ -1,9 +1,8 @@
 import $ from "jquery";
 import 'popper.js'
 import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './style.css'
+import './style.scss'
 
 $(function () {
     var timer;
