@@ -77,12 +77,7 @@ module.exports = env => {
                 },
                 {
                     test: /\.(png|svg|jpg|gif)$/,
-                    use: [{
-                        loader: 'url-loader',
-                        options: {
-                            limit: 16384
-                        }
-                    }]
+                    type: 'asset/inline'
                 }
             ]
         },
