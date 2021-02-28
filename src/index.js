@@ -5,6 +5,12 @@ import 'bootstrap';
 import './style.scss'
 
 $(function () {
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js");
+        })
+    }
+
     var timer;
     var initIframe = function () {
         if ($('#news-container').is(':visible')) {

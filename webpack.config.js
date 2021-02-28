@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => {
     console.log('NODE_ENV: ', env.NODE_ENV) // true
@@ -24,13 +25,7 @@ module.exports = env => {
             filename: "[name].[contenthash].css",
             chunkFilename: "[id].[contenthash].css"
         }),
-        // new CopyWebpackPlugin([
-        //   { from: 'src/img/item', to: 'img/item' },
-        //   { from: 'src/img/quest', to: 'img/quest' }
-        // ]),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //   name: "data",
-        // })
+        new WorkboxPlugin.GenerateSW()
     ];
 
     return {
