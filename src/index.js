@@ -1,42 +1,47 @@
-import $ from "jquery";
-import 'popper.js'
-import 'bootstrap';
+import { Tab } from 'bootstrap';
 
 import './style.scss'
 
-$(function () {
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("/service-worker.js");
-        })
-    }
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js");
+    })
+}
 
-    var timer;
-    var initIframe = function () {
-        if ($('#news-container').is(':visible')) {
-            console.log('load news');
-            $('.news-iframe').each(function (i, iframe) {
-                iframe.src = 'about:blank';
-                if ($(iframe).is(':visible')) {
-                    var src = iframe.getAttribute('data-src');
-                    iframe.src = src;
-                }
-            });
-        }
-    };
+var iframeList = document.getElementsByClassName('news-iframe');
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        $('.news-iframe').each(function (i, iframe) {
-            if ($(iframe).attr('src').indexOf('http') != 0 && $(iframe).is(':visible')) {
+var initIframe = function () {
+    var newsContainer = document.getElementById('news-container');
+    if (window.getComputedStyle(newsContainer).display != "none") {
+        console.log('load news 0');
+        for (const iframe of iframeList) {
+            iframe.src = 'about:blank';
+            if (iframe.offsetParent && iframe.parentElement.classList.contains('show')) {
                 var src = iframe.getAttribute('data-src');
                 iframe.src = src;
+                console.log('load:', src);
             }
-        });
-    })
+        }
+    }
+};
 
-    window.onresize = function (event) {
-        clearTimeout(timer);
-        timer = setTimeout(initIframe, 500);
-    };
-    initIframe();
-})
+for (const tab of document.querySelectorAll('a[data-bs-toggle="tab"]')) {
+    tab.addEventListener('shown.bs.tab', function (event) {
+        console.log('load news 1');
+        for (const iframe of iframeList) {
+            if (iframe.src.indexOf('http') != 0 && iframe.offsetParent) {
+                var src = iframe.getAttribute('data-src');
+                iframe.src = src;
+                console.log('load:', src);
+            }
+        }
+    })
+}
+
+var timer;
+window.onresize = function (event) {
+    clearTimeout(timer);
+    timer = setTimeout(initIframe, 500);
+};
+
+setTimeout(initIframe, 500);
